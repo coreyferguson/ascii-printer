@@ -35,4 +35,16 @@ describe("ascii printer", () => {
     expect(result[7][4]).toBe('L');
     expect(result[8][4]).toBe('');
   });
+
+  test('test case 3, rectangles behind others are also erased', () => {
+    printer.drawRectangle('#', 3, 3, 9, 4);
+    printer.eraseArea(6, 2, 6, 4);
+    const result = printer.printCanvas();
+    expect(result[6][1]).toBe('R');
+    expect(result[6][2]).toBe('');
+    expect(result[6][3]).toBe('');
+    expect(result[6][4]).toBe('');
+    expect(result[5][3]).toBe('#');
+    expect(result[7][3]).toBe('#');
+  });
 });
