@@ -14,6 +14,19 @@ class AsciiPrinter {
     }
 
     dragAndDrop(selectX, selectY, releaseX, releaseY) {
+        let rectangle;
+        for (let i=this.rectangles.length-1; i>=0; i--) {
+            rectangle = this.rectangles[i];
+            const isInBounds = selectX >= rectangle.leftX && selectX <= rectangle.rightX && selectY >= rectangle.topY && selectY <= rectangle.bottomY;
+            if (!isInBounds) continue;
+            let shiftX = releaseX - selectX;
+            let shiftY = releaseY - selectY;
+            rectangle.leftX += shiftX;
+            rectangle.rightX += shiftX;
+            rectangle.topY += shiftY;
+            rectangle.bottomY += shiftY;
+            break;
+        }
     }
 
     bringToFront(selectX, selectY) {
